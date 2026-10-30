@@ -1,42 +1,25 @@
-# Experiment title
+# YYYY-MM-DD — A descriptive experiment title
 
-Date: YYYY-MM-DD  
-System:  
-Evidence type: bench / vehicle / simulation / analysis  
-Status: planned / completed / aborted / inconclusive  
+## The problem
 
-## Question
+I wanted to understand… This matters because…
 
-What specific question should this experiment answer?
+## My starting setup
 
-## Setup
+Record the hardware identification, software revision, power source, mechanical/hydraulic state, calibration, and relevant limits. Link the system hardware page and describe anything that changed. Identify the quantity actually measured and its units.
 
-- Hardware identification and relevant revisions:
-- Wiring, supply, mechanical/hydraulic load, and instrumentation:
-- Software commit and configuration:
-- Units, calibration, and time base:
-- Preconditions and stop conditions:
+## What I tried
 
-## Method
+Describe the sequence clearly enough to repeat, including the initial state, command timing, comparison runs, stop conditions, and recovery. Use descriptive test names; add local case numbers only as a cross-reference.
 
-Record what changed and what stayed constant. Include enough detail to understand the comparison.
+## What I found
 
-## Observations
+Separate saved measurements from what I saw or heard. Include failures, missed endpoints, and incomplete runs. Link data with source filenames/hashes and explain the time origin. If the test didn't run on hardware, say “prepared” or “checked offline.”
 
-Record measured behavior, unexpected results, and failures separately from interpretation.
+## What I think it means
 
-| Quantity | Result | Units / uncertainty |
-| --- | --- | --- |
-| | | |
+Explain the result in first person. What explanation fits? What alternatives remain? What did this change about my design? Don't turn a single bench result into a universal specification.
 
-## Evidence
+## What comes next
 
-Link the raw data, processed results, photos, plots, and processing code. If unavailable, say so.
-
-## Interpretation and limits
-
-What does the evidence support? What alternative explanations remain? Distinguish targets, calculations, and measurements.
-
-## Next action
-
-State the next useful measurement or decision. Update the system summary and lessons page if this changes the current understanding.
+Record the next useful measurement or decision, or explain why I consider the question sufficiently answered for now. Link any later experiment that supersedes this one.

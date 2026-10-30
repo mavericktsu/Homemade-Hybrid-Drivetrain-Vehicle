@@ -1,7 +1,9 @@
-# Vehicle systems
+# Systems
 
-| System | Scope | Status |
-| --- | --- | --- |
-| [Gen 1 iBooster](ibooster-gen1/README.md) | Bench control and suitability as a clutch actuator | Active investigation |
+I'm organizing the project by subsystem so each topic can grow without turning the root README into a diary.
 
-Add new systems as development material becomes available. Each system starts with a README describing its role, current findings, evidence, and open questions.
+| System | Current notes |
+| --- | --- |
+| [Gen 1 Bosch iBooster](ibooster-gen1/README.md) | Bench setup, external control, travel ceiling, speed, command-loss faults, recovery, and suspected PSU trouble |
+
+Drivetrain mechanics, battery/BMS, inverter, ECU strategy, power distribution, displays, and vehicle integration will get their own sections as I publish useful work. My current choices are already summarized in the [baseline](../docs/project-baseline.md).
