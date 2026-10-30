@@ -1,54 +1,37 @@
-# Adding to this repository
+# How I keep this notebook
 
-Keep the root README as the introduction: what the vehicle is, how it works, what it aims to do, and where to read more.
+I want someone arriving halfway through the project to understand why I tried something, how I checked it, and what the result actually establishes. A list of test numbers or a pasted terminal log doesn't do that on its own.
 
-## Grow by system
+## Two layers of documentation
 
-Use `systems/<system-name>/README.md` as the entry point for each subject. It should explain purpose, current status, useful findings, open questions, and links to detail.
+Each system starts with a README explaining the current state. Hardware, interfaces, and practical workflow get their own pages when needed. Dated experiments preserve the route I took, including failed ideas and superseded settings. I update the overview when the answer changes, while keeping the old experiment's result intact and linking the newer finding.
 
-The first subject is [Gen 1 iBooster](../systems/ibooster-gen1/README.md). Future subjects might include the P2 mechanical stack, battery, hybrid controls, cooling, or displays. Create those folders when their first useful document is ready.
+My normal experiment structure is:
 
-As a system grows, add only what it needs:
+1. **The problem:** what I wanted to understand, and why it mattered to the vehicle.
+2. **What I tried:** the hardware, starting state, commands, measurements, and comparisons.
+3. **What I found:** the observations and recorded results, including failures.
+4. **What I think it means:** my interpretation, alternatives, and practical consequence.
+5. **What comes next:** the unresolved question or change I intend to make.
 
-```text
-systems/<system-name>/
-  README.md
-  hardware.md
-  lessons-learned.md
-  experiments/
-    YYYY-MM-DD-short-description.md
-  software/
-  data/
-  images/
-```
+I write in first person because this is my work and my interpretation. I use direct instructions in a bench guide when that helps someone repeat a step. I keep exact parameters beside descriptive names: “omit the request for 100 ms” is more useful than “test 11 failed.” Historical case numbers can stay as a cross-reference, with the software version identified.
 
-The example above is a pattern, not a list of folders that must all exist.
+## Evidence and confidence
 
-## Keep conclusions and history connected
-
-The system README answers "where are we now?" A dated experiment explains what was tried and what happened. The lessons page collects useful conclusions and links back to the experiments.
-
-Use the [experiment template](../templates/experiment.md). Record the exact unit, setup, software revision, request, observation, and limits of the conclusion. Preserve failed and inconclusive runs. Add a correction when a later test changes the interpretation.
-
-Useful evidence labels:
-
-| Label | Meaning |
+| Label | What I mean |
 | --- | --- |
-| Target / intent | What the project aims to achieve |
-| Manufacturer-specified | Published value with a direct source and applicable revision |
-| Observed | Recorded behavior on the identified setup |
-| Calculated / simulated | Derived result with inputs and assumptions |
-| Inferred | Interpretation that still needs confirmation |
-| Unknown | Not established |
+| Recorded | A saved capture or report contains the value; I name the source |
+| Observed | I saw, heard, or roughly measured it, without a synchronized instrument record |
+| Inferred | My explanation fits the observations but hasn't been isolated experimentally |
+| Planned / checked offline | I've prepared the procedure or checked software behavior without demonstrating it on hardware |
+| Unknown | I haven't established it |
 
-## Code and evidence
+These labels keep a plausible explanation from quietly becoming a specification. For example, my PSU clicked while the booster cycled, which makes power delivery a strong suspect; I haven't captured the voltage transient that would prove a reset cause.
 
-Keep software near the system it serves. Give it a README with dependencies, version, offline checks, and limitations before publishing. Link each experiment to the exact code commit and configuration used.
+## What I publish
 
-Put selected raw captures, processed tables, or plots beside the relevant system and link them from the experiment. Record units, time bases, calibration, and processing steps. A screenshot alone rarely explains a result.
+I prefer small, useful data excerpts with units, time origins, calibration, source filenames, and hashes. A reader should be able to distinguish host-queued commands, adapter echoes, and actual feedback. If I haven't published the full capture or controller source, I say so rather than implying complete reproducibility.
 
-Use small, informative files in Git. Add large recordings or datasets as release assets or in an appropriate external archive, with a stable link and checksum. Decide whether substantial CAD belongs here or in a separate design repository before importing it.
+I keep private paths, credentials, chat exports, and unrelated working files out of the repository. External research gets a link and a note about which hardware generation it covers. I'll identify source licenses before importing code or substantial third-party material; a reference link doesn't grant me permission to republish it. I haven't selected a repository-wide license yet.
 
-Credit external projects and pin source revisions where possible. Link third-party manuals and code; check their license before copying or redistributing them. This starter does not choose a license for the owner's work.
-
-Use Issues for unresolved questions or work items. When a question is answered, put the conclusion in the relevant document and link the issue. An issue thread should not be the only place a useful result is recorded.
+Use the [experiment template](../templates/experiment.md) for the next session. This format is a guide to explaining the work, not a requirement to turn every small observation into a long report.

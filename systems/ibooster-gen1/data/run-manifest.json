@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "prepared_date": "2026-10-30",
+  "hardware": "Tesla Gen 1 P1045523-00C; unloaded bench, not a clutch installation",
+  "calibration": {
+    "rest_raw": 320,
+    "observed_manual_upper_raw": 2961,
+    "span_raw": 2641,
+    "interpretation": "Normalized manual feedback span, not output millimetres or clutch engagement"
+  },
+  "time_origin": "Host timestamp of first queued enabled request for each gain apply",
+  "source_availability": "Full raw captures, reports and helper source remain in private working records; only derived excerpts are published here",
+  "queued_analysis": "Transmit fields are decoded from host-queued records, not a second independent bus capture",
+  "gain_fixture": {
+    "filename": "speed_gain_20261030.json",
+    "sha256": "309d9801e44260089fa295f02b4f88946e030b7bc7efa2ae5cfa3e562b753c95",
+    "traces": 4,
+    "feedback_samples": 523,
+    "excerpt_window": "First two seconds or end of apply, whichever came first"
+  },
+  "endpoint_runs": 13,
+  "published_data_files": [
+    {
+      "filename": "gain-response-excerpts.csv",
+      "sha256": "7255fd9f855c2718dd39bafe78228205373cb382baf73ea9cb31baa52fccdc92"
+    },
+    {
+      "filename": "gain-response-summary.csv",
+      "sha256": "ef2877f268ccd78316821916cb2b43201f98b59136d930533a7b7ab4aaca7a48"
+    },
+    {
+      "filename": "endpoint-summary.csv",
+      "sha256": "387883d394b0bf9afa064dd0d983252151394ae6260fa9ad8b8c72223cdf7c71"
+    }
+  ],
+  "runs": [
+    {
+      "session": "test_suite_20261030_080721_997902",
+      "software_version": "0.7.1",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_080721_997902.json",
+          "sha256": "a67ea5c1f63d4122797e43821102013d8592c5fb1e3d0c1094d658c4ff6a56ad",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_080721_997902.csv",
+          "sha256": "e2a1e905923ae9fc507c84122b5b3dfffb3fb87ac0a4898fec4b19373c9f3b09",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "e93382b8fbb97182090009cb2d741f1dae25a9103a10113df27c5f1d6afe7409",
+        "suite_runner.py": "c794eebe30f7bf36e3ede62ac5cc0cb770ad3d332c390f8d90c7ab3c43708fbf",
+        "bench.py": "7f3c12bed754cea68cb9ae3588a19b816fbde0f3fca981295ae59573da173b55",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_082748_134430",
+      "software_version": "0.7.1",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_082748_134430.json",
+          "sha256": "7dc2d5338932e1ec8848c200321b82b279838e1083b3798d182e2503f6c3d371",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_082748_134430.csv",
+          "sha256": "d7900762976f60fc30720eadcd32268ff2703c6b890cc626892ef1bfd515fec3",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "e93382b8fbb97182090009cb2d741f1dae25a9103a10113df27c5f1d6afe7409",
+        "suite_runner.py": "c794eebe30f7bf36e3ede62ac5cc0cb770ad3d332c390f8d90c7ab3c43708fbf",
+        "bench.py": "7f3c12bed754cea68cb9ae3588a19b816fbde0f3fca981295ae59573da173b55",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_092726_743733",
+      "software_version": "0.8",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_092726_743733.json",
+          "sha256": "82bbd33f0d2b31d40981ab2985484993d5e891787db4b12fa10530df7d4b812f",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_092726_743733.csv",
+          "sha256": "341be260948f4a90feb27a944eef8f7e9b678b4c47af5dc671580897ec49431f",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "7ca61413c0d041d3447478c027978373755d28cf1560f8a5b76dfc0d57b0f566",
+        "suite_runner.py": "34af24def1472cd48e9f789c888098a2b1dc5f4cf6ad880eae0a584e685246ff",
+        "bench.py": "7f3c12bed754cea68cb9ae3588a19b816fbde0f3fca981295ae59573da173b55",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_093741_634314",
+      "software_version": "0.8.1",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_093741_634314.json",
+          "sha256": "a1a632b5f1040bac625d56fb86ba9ed643aa3343fc809fe6ab177f78d456c826",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_093741_634314.csv",
+          "sha256": "e45b819d4ab106f5e2a9f677342811d678a8b5de47d076d57e9cbdb2b92582bd",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "5b3c6b1879c30c03fb6e7c6a884eef3478677a3c372811f461adf2a07edb3c31",
+        "suite_runner.py": "4626e7a0e20e178d59684818213eee9db54da94ace5ffbeab9303dae81f12fff",
+        "bench.py": "7f3c12bed754cea68cb9ae3588a19b816fbde0f3fca981295ae59573da173b55",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_093851_012162",
+      "software_version": "0.8.1",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_093851_012162.json",
+          "sha256": "e75c5ff55252fc7d0f3540424850ea0fde9d81744325bc297e8bdcee2393893f",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_093851_012162.csv",
+          "sha256": "d48c7ac936dcd3fd603ad9e4c2f79e03493c719a1069a20069d1d68de84ad711",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "5b3c6b1879c30c03fb6e7c6a884eef3478677a3c372811f461adf2a07edb3c31",
+        "suite_runner.py": "4626e7a0e20e178d59684818213eee9db54da94ace5ffbeab9303dae81f12fff",
+        "bench.py": "7f3c12bed754cea68cb9ae3588a19b816fbde0f3fca981295ae59573da173b55",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_103505_731502",
+      "software_version": "0.9",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_103505_731502.json",
+          "sha256": "68aaf839decf4488fb542f282331f7ef2cc25e5bfeedf61ee4d150845ef4ac19",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_103505_731502.csv",
+          "sha256": "02fbed1a148b1cced92c12f1961d0f9a26099330b5615ee8f9cd8821ac45c46b",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "e4f2cda50479bd56c82e425d73b8fac5b18968e5a27026dcf78318ec112d5f6e",
+        "suite_runner.py": "894d278e48b79cfb22ae2880b8b2a01c1ffdc0f38e3ca750205fd5ff9c21c10c",
+        "bench.py": "87aef8497992cd04737574adebe81d0554de859f6c0671c6a96e93ab20f974b8",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_122348_965443",
+      "software_version": "0.9.2",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_122348_965443.json",
+          "sha256": "48d7de6140d5cd4059d492fd9eb61aa01e4fe05d069462f895945db49ba14e71",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_122348_965443.csv",
+          "sha256": "9f5771c92e3a50aa4a6dce72168fdab354cf1da7a4f7121eff02f0e70897f174",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "f741e9bd6466e3f654e478566ea0fa5afc30c2661b7fd53a42675ce805353701",
+        "suite_runner.py": "16706a5eeb7e964761eebbfbb50f36019c122742ff982227dfd3c0a60d3ebfe0",
+        "bench.py": "87aef8497992cd04737574adebe81d0554de859f6c0671c6a96e93ab20f974b8",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_122809_713357",
+      "software_version": "0.9.2",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_122809_713357.json",
+          "sha256": "d442ce77666dcf55a35b43a283a91ae43a1964cd5232d260b928475bd714a4d4",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_122809_713357.csv",
+          "sha256": "ff0f527c1017aa6b74697a0bae6f73bb9bcf9b5e7a945dd78285f345ebffd0fe",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "f741e9bd6466e3f654e478566ea0fa5afc30c2661b7fd53a42675ce805353701",
+        "suite_runner.py": "16706a5eeb7e964761eebbfbb50f36019c122742ff982227dfd3c0a60d3ebfe0",
+        "bench.py": "87aef8497992cd04737574adebe81d0554de859f6c0671c6a96e93ab20f974b8",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    },
+    {
+      "session": "test_suite_20261030_122913_998820",
+      "software_version": "0.9.2",
+      "source_files": [
+        {
+          "filename": "test_suite_20261030_122913_998820.json",
+          "sha256": "cbc66fd8f6837077bebb022a9ecc08c07322475c70cbe35aeb62d67c560a1618",
+          "published": false
+        },
+        {
+          "filename": "test_suite_20261030_122913_998820.csv",
+          "sha256": "af0f55e546ecd56f8abf745f596e2aed414576960ef18004183f23abfcc131ae",
+          "published": false
+        }
+      ],
+      "helper_source_sha256": {
+        "suite.py": "f741e9bd6466e3f654e478566ea0fa5afc30c2661b7fd53a42675ce805353701",
+        "suite_runner.py": "16706a5eeb7e964761eebbfbb50f36019c122742ff982227dfd3c0a60d3ebfe0",
+        "bench.py": "87aef8497992cd04737574adebe81d0554de859f6c0671c6a96e93ab20f974b8",
+        "protocol.py": "52b4b1a35455220e61b31bce5610837b12b052c74fb032e847689f0335805bcc",
+        "startup.py": "46daae98d2a3a6c0896701b9db880fa125d51cf8994b227b2e99cf406f09ecb6",
+        "transport.py": "39021631c9ca3c530124b50bbbf2a8a39f40e6cd5a585be20bc6faa1d6625a0d"
+      }
+    }
+  ],
+  "observations_without_synchronized_capture": [
+    "Manual rod sweep and rough 14-17 mm output measurement at 40%",
+    "Physical output stops at remote endpoint",
+    "Pin-17 interruption around 1-2 seconds with ignition/motor feeds retained; reboot and handshake accepted",
+    "Prolonged standalone internal startup motion and coincident PSU clicking",
+    "Supply display about 12.5-13 V during case 29"
+  ],
+  "prepared_not_hardware_validated": [
+    "New 45% profiles and reversing ladders",
+    "Physical shutdown behavior of new oscillation guard",
+    "Vehicle PDM power-cycle recovery and loaded clutch control"
+  ]
+}

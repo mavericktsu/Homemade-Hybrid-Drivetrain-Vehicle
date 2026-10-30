@@ -1,47 +1,36 @@
-# Remote travel ceiling and gain comparison
+# October 30 — Finding a travel scale and a useful position gain
 
-Date: October 30, 2026. Evidence type: summary of bench logs, development notes, and owner observations.
+## The problem
 
-## Questions
+Once larger commands worked, I needed a usable travel range and a way to compare response speed. Raw feedback alone didn't tell me how much movement I was asking for, and the first tiny step was too small to judge by eye.
 
-How much of the manually observed feedback span is remotely available, and does higher host position-loop gain improve the response?
+## What I tried
 
-## Reference and setup
+I recorded several manual rod sweeps in `travel.asc`, including travel near the far end. That gave me rest at **320 raw** and an observed upper end of **2961 raw**. I normalized that span to 0–100%; the end bounced somewhat, so I didn't treat it as a surveyed stroke calibration.
 
-The working project uses 320 raw as released and 2961 raw as the manual full-span reference. Percentages below refer to that signal span. They do not mean calibrated stroke or clutch engagement.
+I used that scale for a host-side proportional position loop and compared 0–40% applies with gains 20, 32, and 48, all with a flow cap of ±5120. I also tried targets above 40% to see whether the available remote range matched the manual range.
 
-Testing used the identified donor unit without a demonstrated final clutch load. Software notes identify the v0.8-series suite; exact code commits and raw captures are not published here.
+## What I found about travel
 
-## Travel observations
+A 40% target is **1376 raw** and was reachable. Eight attempts at a 60% target in one earlier session stopped around **1579 raw**, approximately **47.67%** of my manual span. I could manually move farther. I also confirmed that the physical output stopped at the remote plateau, rather than just the displayed position freezing.
 
-The recorded session `test_suite_20261030_092726_743733` contained one completed 40% case, eight 60% attempts, and seven intervening successful 5% recovery checks.
+My rough output measurement at 40% was **14–17 mm**. It was difficult to measure and wasn't instrumented. I haven't used it to infer a full-stroke length or the final clutch's required displacement. The [endpoint follow-up](2026-10-30-endpoint-characterization.md) explores the plateau more systematically.
 
-Each 60% attempt plateaued at **1579 raw, approximately 47.67%** of the manual span, below its 1905-raw target. Requests and feedback continued, and reference mode remained 7. The owner later reported that physical output motion also stopped.
+## What I found about gain
 
-The owner roughly estimated **14–17 mm output travel at the 40% target**. That estimate is not a measured conversion curve, and no linear extrapolation is adopted here.
+| Host gain | 10–90% transit | Settled time | Overshoot | Result |
+| --- | ---: | ---: | ---: | --- |
+| 20 | 0.2000 s | 0.5691 s | 19 raw | Settled |
+| 32 | 0.2000 s | 0.6693 s | 45 raw | Settled |
+| 48 | 0.2000 s | Not observed before deadline | 65 raw | Sustained hunting |
+| 48, repeat | 0.2006 s | Not observed before deadline | 74 raw | Sustained hunting again |
 
-## Gain comparison
+Settled time includes the required 200 ms dwell in the target band. The gain-48 runs continued receiving fresh feedback in candidate mode 7, but oscillated near the target until their roughly ten-second deadlines. I saw the input shaft bouncing too. Feedback crossings suggested about **7.1 Hz** hunting.
 
-The development note summarizes the 09:37 and 09:38 sessions:
+More gain hadn't bought me a faster measured transit. It had increased overshoot and made the loop unstable. Gain 20 was the best observed baseline in this small comparison; gain 32 also worked. I haven't established an exact stability boundary between 32 and 48, or a universal hardware speed limit.
 
-| Apply gain | Observed 10–90% transit | Settling result |
-| --- | --- | --- |
-| 20 | About 0.20 s | Settled; about 0.57 s including required dwell |
-| 32 | About 0.20 s | Settled; about 0.67 s including required dwell |
-| 48, two attempts | About 0.20 s | Did not settle within the ten-second deadline |
+## What I changed
 
-The gain-48 runs repeatedly crossed the target at approximately 7.1 cycles/s while reference mode and feedback remained normal. This is consistent with unstable host-loop behavior on this setup, without isolating every hydraulic or mechanical contribution.
+I retired gain 48 from normal motion tests and added a fixed-target oscillation guard. Offline replay detects both recorded hunting traces early, without rejecting the lower-gain traces or synthetic in-band noise. That checks the detection logic; it isn't a hardware demonstration of the new stop response.
 
-## Conclusions and limits
-
-The observed remote endpoint is repeatable in these runs; its cause remains unresolved. It is not established as a universal Bosch limit or a documented firmware setting.
-
-Higher gain did not improve the compared transit times and worsened settling. Gain 20 was the best baseline among these particular runs, not a commissioned calibration.
-
-A sustained-oscillation guard was subsequently checked against recorded traces offline. That does not demonstrate its live physical stopping behavior.
-
-## Next investigation
-
-Prepared v0.9 endpoint cases compare selected external-limit fields and direct-flow versus position-loop requests. Automatic software recovery has also been prepared. No successful outcome from those new hardware experiments is claimed here.
-
-Add raw captures, exact software/configuration revisions, independent displacement and hydraulic-load measurements, and recovery outcomes to future records.
+The saved sessions are `test_suite_20261030_092726_743733`, `test_suite_20261030_093741_634314`, and `test_suite_20261030_093851_012162`. The [published gain excerpts](../data/README.md) contain 523 recorded feedback samples from the four gain-comparison moves, with source CSV hashes and a defined time origin.
