@@ -9,13 +9,21 @@ My unit is **P1045523-00C**. I've demonstrated remote movement on an essentially
 | Question | What I've found |
 | --- | --- |
 | Can I command movement? | Yes, on the private/Yaw CAN bus at 500 kbit/s. My helper closes a position loop around a native flow-like request. |
-| How much travel is available? | Manual feedback covered 320–2961 raw. Remote motion repeatedly stopped at 1579 raw, **47.67% of that manual span**, across 13 endpoint probes. Physical output motion stopped too. |
-| What working range am I using? | I've chosen a **45% target ceiling** to stay below that observed endpoint. The newer 45% profiles and ladders are prepared and checked offline; they aren't a completed loaded validation. |
+| How much travel is available? | Manual feedback covered 320–2961 raw. Remote motion repeatedly stopped at 1579 raw, **47.67% of that manual span**, in the earlier endpoint probes and the later ordinary/pattern-2 comparison. Physical output motion stopped too. |
+| What working range am I using? | I've chosen a **45% target ceiling** to stay below that observed endpoint. Later gentle diagnostic holds at 45% completed; that does not validate the prepared ladders or operation under clutch load. |
 | How fast does it move? | In measured 0–40% applies, 10–90% transit was about **0.20 s** at gains 20, 32, and 48. Gain 48 hunted instead of settling. More gain didn't improve that measured transit. |
 | Can it cycle quickly? | Some scheduled cycles miss their endpoints. Aggressive full-range returns caused trouble, and a 2 Hz reversal test repeatedly ended in CAN ACK errors and apparent reboot behavior. I haven't established a maximum sustained full-stroke frequency. |
 | What happens if commands go missing? | Omitting 0x38C around the 100 ms test duration often left external control unavailable even after fresh messages resumed. A 50 ms omission usually recovered. Timing/counter effects mean this isn't an exact OEM timeout measurement. |
 | Can I recover without unplugging everything? | I restored handshake acceptance by briefly cycling the **pin 17, 5 A fused feed** while leaving motor power, ignition, and USB connected. Software recovery alone didn't consistently clear the latched condition. |
 | Why did startup start cycling repeatedly? | It also happened without my helper transmitting, and I heard the PSU clicking during it. I currently suspect power delivery, but haven't confirmed the cause with a waveform or alternate supply. |
+
+## The November follow-up
+
+I compared an alternate working request pattern near the limit, read ECU identity and faults, and observed diagnostics during gentle movement. Both request patterns still plateaued at raw 1579. A runout candidate changed near 40.4%, but its physical meaning and causal role remain unknown. Changing one source-derived CAN ignition bit did not prevent the observed plausibility indication.
+
+I then completed **82 ID/payload combinations across 41 IDs**, using two explicit packet shapes and watching feedback, diagnostics and fault fields. None produced a detected change. Those stationary probes did not retest travel afterward and do not rule out a silent state change, another payload format or a message sequence.
+
+The [dated testing summary](experiments/2026-11-05-remote-travel-and-message-discovery.md) explains the comparisons, interrupted attempts, software corrections and remaining blind spots. The [derived evidence](data/remote-control-investigation-summary.json) records coverage and capture hashes. I have no demonstrated full-travel mode to depend on in the build.
 
 ## A route through these notes
 
@@ -29,4 +37,5 @@ The consistent endpoint gives me a useful envelope to design around. It doesn't 
 
 My current plan is to make the electronics feed switchable through the eventual PDM, so the vehicle can request a reboot if external control is lost. I still need to define what the drivetrain does while that happens. A recovered handshake is one part of that strategy; it doesn't by itself establish a safe clutch state.
 
-Updated October 30, 2026. The working helper and complete raw logs remain outside this repository. Test IDs and helper versions in the notebook describe my local software, not Bosch diagnostic identifiers.
+Updated November 5, 2026. The working helper and complete raw logs remain outside this repository. Test IDs and helper versions in the notebook describe my local software, not Bosch diagnostic identifiers.
+

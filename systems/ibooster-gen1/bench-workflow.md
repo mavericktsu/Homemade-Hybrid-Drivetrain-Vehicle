@@ -43,3 +43,12 @@ For a soft abort, later software can wait for a fresh released state, attempt bo
 If the helper reports USB access denied, I stop other CAN applications and release their device handles; reconnecting USB helped earlier host-access problems. If feedback remains fresh but external motion is ignored after a command-loss test, I treat that as a different problem. The pin-17 power-cycle observation is documented in the recovery entry, with its verification limits.
 
 I have retired the deliberate communication-fault tests and the problematic 2 Hz reversal from the normal selector. I don't need to repeatedly provoke known unrecovered failures to measure motion speed.
+
+## November diagnostic and discovery sessions
+
+The [later investigation](experiments/2026-11-05-remote-travel-and-message-discovery.md) added an experimental combined-bus setup so one adapter could observe both feedback sets and make diagnostic reads while maintaining the known handshake. Its preflight waits for clean private 38E/38F and vehicle 39D traffic before sending application frames. A later version allows up to thirty seconds and reports missing streams explicitly; it does not bypass absent reception.
+
+Discovery then collects a settled baseline, sends one unknown-ID candidate at a time, observes for at least 8.5 seconds, and compares diagnostics and fault fields. The known motion request remains disabled, but unknown-ID packet effects are unknown. An observed change or guard pauses the batch. I preserve incomplete coverage rather than count a partial attempt as a negative result.
+
+After some longer discovery runs hit backlog guards, I reduced repeated report serialization. Compact main reports point to full diagnostic context sidecars. The full lower-neighbor sessions then completed cleanly, but the exact cause of the earlier delays remains unproven. Those stationary surveys do not perform the 0–5–0% functional check or retest the travel ceiling after each candidate.
+

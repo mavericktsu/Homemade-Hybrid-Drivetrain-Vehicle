@@ -14,4 +14,7 @@ I keep generation and part-number differences visible because a useful idea from
 | [Kvaser CAN protocol tutorial](https://kvaser.com/can-protocol-tutorial/) | Why ACK is a link-level observation, not proof that the booster accepted a movement request. |
 | [WANPTEK DPS-series page](https://www.wanptek.com/productinfo/1171926.html) and [DPS manual mirror](https://device.report/m/fb615a27c49f7ea4f21c3143724ed9910adf86004df6302ee68ae5d9479e1eb9_optim.pdf) | Supply specifications and protection behavior. They don't prove which protection state, if any, occurred on my bench. |
 
+The November follow-up also used the [pinned legacy Model S DBC](https://github.com/BogGyver/opendbc/blob/9c0b6fe3ae205beccb879635750150620b8f7f9b/tesla_can.dbc) for candidate 35D fault fields and the [Rivian actuator DBC](https://github.com/commaai/opendbc/blob/178c81ab5c052ac92a849f6400703d082d268c02/opendbc/dbc/rivian_primary_actuator.dbc) as a request-qualifier research lead. The legacy file declares DLC4 while its fault fields extend through bit63; my captures are DLC8. The Rivian payload layout differs from Gen 1. Neither source is a verified override map for my ECU. The [follow-up entry](experiments/2026-11-05-remote-travel-and-message-discovery.md) separates those source clues from the actual bench results.
+
 I link external research rather than republishing its code or documents. These references were consulted for the October 2026 work; the pinned Ocelot link fixes the implementation revision used for the protocol explanation.
+

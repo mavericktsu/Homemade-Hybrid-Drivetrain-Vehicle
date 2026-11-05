@@ -1,0 +1,543 @@
+{
+  "updated": "2026-11-05",
+  "evidence_type": "Derived bench-report summary",
+  "unit": {
+    "generation": 1,
+    "tesla_part_number": "1045523-00-C",
+    "supplier_software_identifier": "8626708010401",
+    "supplier_software_version_hex": "10 11 08",
+    "supplier_version_encoding": "unverified"
+  },
+  "availability": {
+    "full_raw_captures_published": false,
+    "controller_source_published": false,
+    "provenance": "Source basenames and SHA-256 identify retained local captures. This JSON publishes derived results, not raw frames or private paths."
+  },
+  "normalization": {
+    "rest_raw": 320,
+    "manual_upper_raw": 2961,
+    "span_raw": 2641,
+    "units": "raw feedback counts",
+    "percentage_formula": "100 * (raw - 320) / 2641",
+    "mechanical_mm_calibration_verified": false
+  },
+  "remote_endpoint": {
+    "raw": 1579,
+    "normalized_percent": 47.671336614918594,
+    "pattern_1_and_pattern_2_endpoint_attempts": [
+      {
+        "pattern": 1,
+        "peak_raw": 1579,
+        "request_target_raw": 1640,
+        "feedback_cutoff_raw": 1693
+      },
+      {
+        "pattern": 2,
+        "peak_raw": 1579,
+        "request_target_raw": 1640,
+        "feedback_cutoff_raw": 1693
+      },
+      {
+        "pattern": 1,
+        "peak_raw": 1579,
+        "request_target_raw": 1640,
+        "feedback_cutoff_raw": 1693
+      }
+    ],
+    "pattern_labels_are_hypotheses": true
+  },
+  "stepped_holds": [
+    {
+      "target_percent": 39,
+      "raw_range": [
+        1345,
+        1346
+      ],
+      "neutral_samples": 387,
+      "runout_during_neutral": 85,
+      "longest_neutral_interval_s": 4.18
+    },
+    {
+      "target_percent": 41,
+      "raw_range": [
+        1398,
+        1399
+      ],
+      "neutral_samples": 421,
+      "runout_during_neutral": 0,
+      "longest_neutral_interval_s": 8.4
+    },
+    {
+      "target_percent": 45,
+      "raw_range": [
+        1503,
+        1505
+      ],
+      "neutral_samples": 409,
+      "runout_during_neutral": 0,
+      "longest_neutral_interval_s": 3.88
+    },
+    {
+      "target_percent": 50,
+      "raw_range": [
+        1579,
+        1579
+      ],
+      "neutral_samples": 0,
+      "positive_flow_offset_raw": 122,
+      "runout_at_hold": 0
+    }
+  ],
+  "runout_interpretation": "Candidate field; physical meaning and causal relation to endpoint unknown. Neutral commanded flow does not measure motor effort or pressure.",
+  "discovery": {
+    "completed_id_payload_pairs": 82,
+    "distinct_ids": 41,
+    "completed_probe_frames_queued": 4100,
+    "completed_probe_owned_echoes": 4100,
+    "probe_duration_s": 1,
+    "probe_hz": 50,
+    "minimum_post_probe_observation_s": 8.5,
+    "additional_settled_baseline_s": 16,
+    "batch_sizes": {
+      "nearby38": 11,
+      "upper39": 15,
+      "lower37": 15
+    },
+    "batch_ranges": {
+      "nearby38": "0x380-0x38A",
+      "upper39": "0x390-0x39F excluding 0x39D",
+      "lower37": "0x370-0x37F excluding 0x37D"
+    },
+    "families": {
+      "disabled_request_shape": "CRC counter F0 00 E0 07 00 00",
+      "counter_zero_crc": "CRC counter 00 00 00 00 00 00"
+    },
+    "packet_hypothesis": "Classic standard-ID CAN, DLC8, reference CRC over bytes1-7, low-nibble counter modulo16. Unknown-ID semantics unverified.",
+    "result": "No detected change under the tested probes",
+    "limits": [
+      "Not an exhaustive CAN search",
+      "Owned echoes do not prove application acceptance",
+      "No post-probe travel comparison",
+      "No proof of absent hidden state changes",
+      "Auto candidates share an ECU session; only resumed sessions have fresh baselines",
+      "No measured pressure, force, current waveform or clutch-load performance"
+    ],
+    "sessions": [
+      {
+        "session": "discovery_probes_20261104_210835_396255",
+        "batch": "nearby38",
+        "family": "disabled_request_shape",
+        "completed_ids": [
+          "0x380",
+          "0x381",
+          "0x382",
+          "0x383",
+          "0x384",
+          "0x385",
+          "0x386",
+          "0x387",
+          "0x388",
+          "0x389",
+          "0x38A"
+        ],
+        "completed_cases": 11,
+        "post_probe_positive_dtc_reads_unchanged": 11,
+        "partial_cases": [],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261104_210835_396255.json",
+            "sha256": "1ef4d65210898dbd71d1bc9bba15d516d8bc072d31398bbd4f66197bca42c7b4"
+          },
+          {
+            "filename": "discovery_probes_20261104_210835_396255_context.json",
+            "sha256": "eaabae2134f901b21259d112e91dd2ece91628db87bf0ef1e86f1def341e1f60"
+          },
+          {
+            "filename": "discovery_probes_20261104_210835_396255_context.csv",
+            "sha256": "9675cd7b773bd15c404128ee5d1208ab1c9366adb7dd00beb8e7656321a68561"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261104_212217_033805",
+        "batch": "nearby38",
+        "family": "counter_zero_crc",
+        "completed_ids": [
+          "0x380",
+          "0x381",
+          "0x382",
+          "0x383",
+          "0x384",
+          "0x385",
+          "0x386",
+          "0x387",
+          "0x388"
+        ],
+        "completed_cases": 9,
+        "post_probe_positive_dtc_reads_unchanged": 9,
+        "partial_cases": [
+          {
+            "can_id": "0x389",
+            "verdict": "STOPPED_FOR_REVIEW",
+            "probe_frames_queued": 2,
+            "probe_owned_echoes": 0,
+            "reason": "position_backlog_or_report_guard"
+          }
+        ],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [
+          {
+            "event": "position_backlog_or_report_guard",
+            "elapsed_s": 112.88620790001005,
+            "case": "counter_zero_crc_389",
+            "stage": "discovery_probe",
+            "raw": 320,
+            "backlog": 7,
+            "report_error": null
+          }
+        ],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261104_212217_033805.json",
+            "sha256": "73069085d02540471f008fe9fbca968d550577e76d845d2cbce10fedfb3a2677"
+          },
+          {
+            "filename": "discovery_probes_20261104_212217_033805_context.json",
+            "sha256": "009952e96ed217ee118eb60616bf858761a3d4aa98ac2fc09fb9cd4d8c7d80b2"
+          },
+          {
+            "filename": "discovery_probes_20261104_212217_033805_context.csv",
+            "sha256": "a6ef7252cfbe60136764c0017e2add7f404c4b67a2d02ac77b672a688c566859"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261105_070112_268783",
+        "batch": "nearby38",
+        "family": "counter_zero_crc",
+        "completed_ids": [
+          "0x389",
+          "0x38A"
+        ],
+        "completed_cases": 2,
+        "post_probe_positive_dtc_reads_unchanged": 2,
+        "partial_cases": [],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261105_070112_268783.json",
+            "sha256": "26e4ef5ed8968bfe01f1943c34d19657696065bca2c5c4efe8133f955777c792"
+          },
+          {
+            "filename": "discovery_probes_20261105_070112_268783_context.json",
+            "sha256": "5d70855c9f850acb4358c5100da7bd429e07eea4ffd6932ef281f9d14644f6e7"
+          },
+          {
+            "filename": "discovery_probes_20261105_070112_268783_context.csv",
+            "sha256": "b1a9568192d3a5d00ae16e6808cdd87318db050a5aa720eb56fea32f76633378"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261105_071302_662760",
+        "batch": "upper39",
+        "family": "disabled_request_shape",
+        "completed_ids": [
+          "0x390",
+          "0x391",
+          "0x392",
+          "0x393",
+          "0x394",
+          "0x395",
+          "0x396",
+          "0x397",
+          "0x398",
+          "0x399",
+          "0x39A"
+        ],
+        "completed_cases": 11,
+        "post_probe_positive_dtc_reads_unchanged": 11,
+        "partial_cases": [
+          {
+            "can_id": "0x39B",
+            "verdict": "STOPPED_FOR_REVIEW",
+            "probe_frames_queued": 2,
+            "probe_owned_echoes": 0,
+            "reason": "position_backlog_or_report_guard"
+          }
+        ],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [
+          {
+            "event": "position_backlog_or_report_guard",
+            "elapsed_s": 129.71328220004216,
+            "case": "disabled_request_shape_39b",
+            "stage": "discovery_probe",
+            "raw": 320,
+            "backlog": 8,
+            "report_error": null
+          }
+        ],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261105_071302_662760.json",
+            "sha256": "2976c77773776908508be9d10f3ee7abfe702cb045ffaac4292a93fbf6060436"
+          },
+          {
+            "filename": "discovery_probes_20261105_071302_662760_context.json",
+            "sha256": "6cda8f7afb589fee49217a343ef6b32a32b64bb008a3fc682454fda9efd85515"
+          },
+          {
+            "filename": "discovery_probes_20261105_071302_662760_context.csv",
+            "sha256": "f6f2ef2f01cfd77364898c3265af3db8e0e1432465a6e8807bc9425a12d8e388"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261105_071745_545478",
+        "batch": "upper39",
+        "family": "disabled_request_shape",
+        "completed_ids": [
+          "0x39B",
+          "0x39C",
+          "0x39E",
+          "0x39F"
+        ],
+        "completed_cases": 4,
+        "post_probe_positive_dtc_reads_unchanged": 4,
+        "partial_cases": [],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261105_071745_545478.json",
+            "sha256": "4333946638c273d90e65cf9cd3f3d65e63f824cf90dbbd5fba4dc7b264ac3618"
+          },
+          {
+            "filename": "discovery_probes_20261105_071745_545478_context.json",
+            "sha256": "b42be7d0efc7c4042961336130d6a3cd2affb6ca30a9d9045630fbfa090fcd5b"
+          },
+          {
+            "filename": "discovery_probes_20261105_071745_545478_context.csv",
+            "sha256": "c837e2c2b86ec0a73c10ffb096b9ac991a82e589bb168a50b75f046d9919509b"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261105_071955_588188",
+        "batch": "upper39",
+        "family": "counter_zero_crc",
+        "completed_ids": [
+          "0x390",
+          "0x391",
+          "0x392",
+          "0x393",
+          "0x394",
+          "0x395",
+          "0x396",
+          "0x397",
+          "0x398"
+        ],
+        "completed_cases": 9,
+        "post_probe_positive_dtc_reads_unchanged": 9,
+        "partial_cases": [
+          {
+            "can_id": "0x399",
+            "verdict": "STOPPED_FOR_REVIEW",
+            "probe_frames_queued": 2,
+            "probe_owned_echoes": 1,
+            "reason": "position_backlog_or_report_guard"
+          }
+        ],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [
+          {
+            "event": "position_backlog_or_report_guard",
+            "elapsed_s": 111.15283809998073,
+            "case": "counter_zero_crc_399",
+            "stage": "discovery_probe",
+            "raw": 320,
+            "backlog": 6,
+            "report_error": null
+          }
+        ],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261105_071955_588188.json",
+            "sha256": "a4320e886de353ae73e57d8a3b29a5c55fcd6968ee9e31e2886cd37e202c30c3"
+          },
+          {
+            "filename": "discovery_probes_20261105_071955_588188_context.json",
+            "sha256": "389550be4397e2da0f01076355195813b61f2579d7e1893a0dbdbb28c9c3f1bc"
+          },
+          {
+            "filename": "discovery_probes_20261105_071955_588188_context.csv",
+            "sha256": "14cbddb4ad37fa49b6e9c6b393baf1eb367e8fc9ae7821e89212d43a79a0a010"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261105_072315_470330",
+        "batch": "upper39",
+        "family": "counter_zero_crc",
+        "completed_ids": [
+          "0x399",
+          "0x39A",
+          "0x39B",
+          "0x39C",
+          "0x39E",
+          "0x39F"
+        ],
+        "completed_cases": 6,
+        "post_probe_positive_dtc_reads_unchanged": 6,
+        "partial_cases": [],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261105_072315_470330.json",
+            "sha256": "cd22b9bae2a052bcb52f8c969c3899d7ccf53e06240293dff7b0eaaabccadb02"
+          },
+          {
+            "filename": "discovery_probes_20261105_072315_470330_context.json",
+            "sha256": "efd2feca051f2ad786897f7d61e774e220b8ffe5d41330f5439db8e0fcf884d4"
+          },
+          {
+            "filename": "discovery_probes_20261105_072315_470330_context.csv",
+            "sha256": "3ace527656dfc4f0b843103f9d1fc1ff048d349d7faf3778ce9ee0ae83e65c84"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261105_094654_670975",
+        "batch": "lower37",
+        "family": "disabled_request_shape",
+        "completed_ids": [
+          "0x370",
+          "0x371",
+          "0x372",
+          "0x373",
+          "0x374",
+          "0x375",
+          "0x376",
+          "0x377",
+          "0x378",
+          "0x379",
+          "0x37A",
+          "0x37B",
+          "0x37C",
+          "0x37E",
+          "0x37F"
+        ],
+        "completed_cases": 15,
+        "post_probe_positive_dtc_reads_unchanged": 15,
+        "partial_cases": [],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261105_094654_670975.json",
+            "sha256": "8d67acd59b367d2d9c1a584243a4b9ef10ad686e882a5386a50bab24da5d091e"
+          },
+          {
+            "filename": "discovery_probes_20261105_094654_670975_context.json",
+            "sha256": "1d734d38da4069893f7761db4d2ae03869e3cb440b6a069c00d6061d819ae198"
+          },
+          {
+            "filename": "discovery_probes_20261105_094654_670975_context.csv",
+            "sha256": "99aabe91c0ff822b1a05d5a0c4fc7da96de34ea94440c3ff664e606f3578bd22"
+          }
+        ]
+      },
+      {
+        "session": "discovery_probes_20261105_095027_805575",
+        "batch": "lower37",
+        "family": "counter_zero_crc",
+        "completed_ids": [
+          "0x370",
+          "0x371",
+          "0x372",
+          "0x373",
+          "0x374",
+          "0x375",
+          "0x376",
+          "0x377",
+          "0x378",
+          "0x379",
+          "0x37A",
+          "0x37B",
+          "0x37C",
+          "0x37E",
+          "0x37F"
+        ],
+        "completed_cases": 15,
+        "post_probe_positive_dtc_reads_unchanged": 15,
+        "partial_cases": [],
+        "raw_position_range_whole_session": [
+          320,
+          320
+        ],
+        "software_guard_events": [],
+        "source_files": [
+          {
+            "filename": "discovery_probes_20261105_095027_805575.json",
+            "sha256": "2f2881ffdc5c9c8b1e0e46ffaa3d42e6e3eb343844e0b4f409604d0b348cc413"
+          },
+          {
+            "filename": "discovery_probes_20261105_095027_805575_context.json",
+            "sha256": "660ef5985d1f44aafe2ac3aa29c595b4e920d4a9b6183a7b653bcad9f522ea17"
+          },
+          {
+            "filename": "discovery_probes_20261105_095027_805575_context.csv",
+            "sha256": "a09e9a905692c6a30bd112a28483ea0b571b3c9d68a6fd70f972b38f872fae0a"
+          }
+        ]
+      }
+    ]
+  },
+  "motion_sources": [
+    {
+      "filename": "mode_compare_20261104_051726_394949.csv",
+      "sha256": "f737471e0a5c6af9338d7bdf3ddee71cf0a5af7116ae8d91f89a512f29f01dfe"
+    },
+    {
+      "filename": "stepped_combined_travel_20261104_144322_268957.csv",
+      "sha256": "0b629b1988fd79e9b252620f258618b0ca3565402d656e263ad8be226a6d56fb"
+    },
+    {
+      "filename": "ignition_context_0_20261104_134302_604804.csv",
+      "sha256": "1e1a15781be0b91d916362c54a806c22eefca33baa08413b55f1319b1d143c29"
+    },
+    {
+      "filename": "ignition_context_1_20261104_134429_021614.csv",
+      "sha256": "fd2953426226d43ecd6892b215d62ab766b03b83fde3313e42cfb54539168866"
+    }
+  ]
+}

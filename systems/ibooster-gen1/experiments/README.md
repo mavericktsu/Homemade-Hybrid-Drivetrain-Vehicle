@@ -10,5 +10,7 @@ I started by trying to make the unit wake reliably, then moved on to the questio
 | Oct 30 | [Endpoint characterization](2026-10-30-endpoint-characterization.md): thirteen probes reached the same 1579-raw endpoint despite different request magnitudes and limit-field values. |
 | Oct 30 | [Speed, duty cycle, and the ladder](2026-10-30-speed-duty-and-ladder.md): aggressive reversal and scheduled timing exposed different limits; I prepared a 45% range and endpoint-driven ladder. |
 | Oct 30 | [Rapid-reversal failure and suspected PSU trouble](2026-10-30-startup-power-supply.md): repeated ACK loss near reversals, then prolonged standalone startup motion with PSU clicking. Power delivery is my current suspect, not a proven diagnosis. |
+| Nov 2–5 | [Remote travel, diagnostics and message discovery](2026-11-05-remote-travel-and-message-discovery.md): alternate request patterns shared the same endpoint; simultaneous diagnostics added context; 82 completed ID/payload combinations produced no detected response. |
 
 Several entries share a date because I explored them in parallel during one bench session. The order above is a reading order, not a claim that every test happened in that sequence. [Curated data](../data/README.md) identifies the specific saved sessions behind the main measurements.
+

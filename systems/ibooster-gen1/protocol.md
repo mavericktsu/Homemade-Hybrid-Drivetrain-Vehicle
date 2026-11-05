@@ -51,6 +51,12 @@ The reference limit field uses a value of 120, encoded doubled across byte 2 and
 
 My position candidate is `byte3 | ((byte4 & 0x0F) << 8)` in 0x38E. My mode candidate is `(byte2 >> 3) & 7` in 0x38F; byte 2 bit 0 is a driver-input candidate. I use the community descriptions **7 / READY** and **4 / STANDALONE** for orientation. Neither is proof that an enabled request is accepted: I have seen fresh mode-7 feedback while external motion was unavailable.
 
+## Later request-field comparison
+
+The boolean above describes the original reference. In my November tests, byte 5 bits 4–5 behaved differently as patterns 1, 2 and 3: 1 and 2 both actuated, while 3 did not under the same small request. I then tested patterns 1 and 2 near the endpoint; both still peaked at raw 1579. This is behavioral evidence for a multi-value qualifier hypothesis, not an OEM definition or proof that pattern 2 is a maximum-performance mode. See [the dated comparison and discovery summary](experiments/2026-11-05-remote-travel-and-message-discovery.md).
+
+The vehicle side also answered diagnostic reads at 0x64D / 0x65D and transmitted 39D feedback and 35D fault pages. These are separate roles from the native private movement request. Joining the buses for bench observation exposes a reused 38D identifier; it does not turn vehicle-level braking messages or the added controller's 20E input into verified bare-booster commands.
+
 ## Why 0x38C matters
 
 It carries the movement request and its permission/quality information as a repeated, checked message. Calling it a constant enable signal misses the timing and counter requirements. My omission tests suggest a freshness boundary near the 100 ms region under their specific conditions, but don't identify the exact internal watchdog or isolate counter discontinuity from elapsed time.
@@ -60,3 +66,4 @@ Withdrawing the enable bit and returning the request to neutral is my normal cle
 Finally, a host TX-queued record proves intent to transmit. An adapter echo confirms adapter handling. A CAN ACK confirms link-level reception by a node, **not application acceptance or actuator motion**; see the [Kvaser CAN explanation](https://kvaser.com/can-protocol-tutorial/). Echo notifications aren't inherently new commands bouncing back through the application.
 
 Gen 2 research helped frame questions, but its payload lengths and flags aren't a drop-in Gen 1 protocol. I haven't verified another native command that overrides this unit's remote endpoint. See [references](references.md) for the different hardware each project studied.
+

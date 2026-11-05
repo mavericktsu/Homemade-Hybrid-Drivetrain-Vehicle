@@ -7,6 +7,7 @@ I've published a small selection of my recorded results so the notebook has more
 | [Gain-response excerpts](gain-response-excerpts.csv) | 523 feedback samples from four 0–40% applies: gains 20, 32, 48, and a gain-48 repeat |
 | [Gain-response summary](gain-response-summary.csv) | Transit, settling, overshoot, and original case verdict for those four applies |
 | [Endpoint summary](endpoint-summary.csv) | Thirteen probes, their request/limit settings, plateau values, and post-probe response checks |
+| [November remote-control summary](remote-control-investigation-summary.json) | Request-pattern endpoint comparison, stepped holds, 82-case discovery coverage and source-file hashes |
 | [Run manifest](run-manifest.json) | Source capture/report SHA-256 hashes, recorded helper versions and source-file hashes, calibration, and provenance notes |
 
 ## How to read the gain excerpts
@@ -21,8 +22,15 @@ The request min/max and limit-field values were decoded from **host-queued trans
 
 `response_check_passed` means the subsequent small 0–5–0% check succeeded for that probe. It doesn't prove recovery from the separately induced command-loss fault.
 
+## How to read the November summary
+
+The new JSON is a derived record of the November 2–5 follow-up. It retains the original feedback normalization, endpoint comparisons, the candidate runout observations, and completed ID/family coverage across nine contributing discovery sessions. The 82 cases each contain fifty queued probes with matching owned echoes; partial attempts are excluded and recorded separately through their software guard events. A completed repeat supplies coverage for an interrupted case.
+
+Times in the hold table are host-observed intervals. Neutral flow is commanded request content, not measured pressure or motor effort. The runout field's physical meaning remains unknown. Discovery's negative result means no detected response to those particular shapes; it does not establish ECU acceptance or unchanged travel after each probe. See [the narrative](../experiments/2026-11-05-remote-travel-and-message-discovery.md) before treating a number as a design specification.
+
 ## Calibration and availability
 
 All percentages use my manually observed **320–2961 raw** span. They aren't an output-shaft millimetre calibration. Times are host timestamps, pressure/current weren't measured in these data, and the assembly wasn't under clutch load.
 
 The manifest's filenames identify retained source files; the full raw files aren't included in this repository. Their hashes let me identify them unambiguously if I publish them later. Helper source hashes identify the files used in a run, not public Git commit IDs. I haven't imported the private working software, source captures, screenshots, or chat transcripts as part of this update.
+

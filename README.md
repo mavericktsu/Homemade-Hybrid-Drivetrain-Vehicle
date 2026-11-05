@@ -6,6 +6,8 @@ This is my engineering notebook as the project develops. I want it to be useful 
 
 **Current focus: [using a Gen 1 Bosch iBooster as a possible clutch actuator](systems/ibooster-gen1/README.md).** I can command movement on the bench, have characterized an apparent remote-travel ceiling, and have a practical power-cycle recovery method. The clutch installation and operation under clutch load are still ahead of me.
 
+The [November 2–5 testing summary](systems/ibooster-gen1/experiments/2026-11-05-remote-travel-and-message-discovery.md) covers alternate request encodings, ECU diagnostics, combined-bus observations and **82 completed discovery probes across 41 IDs**. I have not found a travel-limit override; the measured envelope remains the basis for packaging.
+
 ## What I'm building
 
 ```mermaid
@@ -58,4 +60,5 @@ I haven't established combined output, vehicle mass, acceleration, top speed, el
 
 I distinguish recorded bench results, my observations, interpretations, and plans throughout these pages. This remains a development project, with no validated vehicle controller or completed brake/clutch installation. I've published a small selection of derived bench data; the working software, full raw captures, CAD, and private conversations aren't included here.
 
-Updated October 30, 2026.
+Updated November 5, 2026.
+

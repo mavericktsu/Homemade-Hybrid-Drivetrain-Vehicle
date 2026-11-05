@@ -8,8 +8,8 @@ I used this setup for the experiments in this section. These details identify th
 | CAN interface | DSD TECH SH-C30A USB-CAN, candleLight/gs_usb interface |
 | Computer | Windows, Cangaroo for listening and a custom Python helper for command tests |
 | Supply | WANPTEK DPS3010U, nominal 0–30 V / 0–10 A, used around 12–13 V |
-| Mechanical state | Secured assembly, master cylinder attached, no clutch load |
-| Hydraulics | I reported the master filled/bench-bled and the outlets handled for testing; I haven't published an exact hydraulic schematic |
+| Mechanical state | Secured assembly, no clutch load; master attached in earlier tests and removed for the November follow-up |
+| Hydraulics | Earlier attached-master setup was reported filled/bench-bled; later removed-master tests had no hydraulic circuit under test |
 | Measurements | CAN feedback and host logs; rough physical stroke checks; PSU front-panel readings |
 
 I don't have synchronized voltage, current, pressure, temperature, or independent output-position instrumentation in these captures. The supply's 10 A rating isn't a record of the current-limit setting I used. Displayed current was generally low—roughly 1–2 A during hard, fast manual operation and often under 1 A during remote movement—but I haven't measured short peaks or loaded clutch demand.
@@ -24,7 +24,7 @@ I don't have synchronized voltage, current, pressure, temperature, or independen
 | 20 | Maintained switched +12 V through a separate 5 A fused branch | Ignition / wake input |
 | 18 | CAN-H | Private/Yaw CAN used for external control |
 | 10 | CAN-L | Private/Yaw CAN used for external control |
-| 25 / 16 | Vehicle CAN-H / CAN-L | Separate bus; not the pair used for these command tests |
+| 25 / 16 | Vehicle CAN-H / CAN-L | Vehicle/diagnostic bus; initially separate, later experimentally joined for combined observations |
 
 I fed the power branches from the same supply, with a common negative. The ignition input needs to stay connected during normal testing: touching it briefly wakes the unit, but doesn't reproduce a maintained ignition-on state. Cycling pin 17 worked as a reboot on my bench; that doesn't prove the internal distribution of every power domain.
 
@@ -35,6 +35,14 @@ Identify cavities by their molded numbers and confirm the connector viewing dire
 The command bus is **500 kbit/s, standard 11-bit CAN**. I use one CAN application at a time so Cangaroo and the helper don't compete for the USB device. Closing a capture window isn't always the same as releasing the interface; earlier “Access denied” errors were a separate host-side problem.
 
 Check termination with power off. Two 120 Ω end terminations normally measure about 60 Ω between CAN-H and CAN-L; I haven't retained a measured termination value for this bench. A CAN interface receiving in normal mode can still acknowledge frames even when its application isn't transmitting commands. Listen-only mode behaves differently, so “all sender traffic stopped” isn't equivalent to physically disconnecting CAN.
+
+## Later combined-bus experiment
+
+For the November follow-up I experimentally joined **H25 + H18 to adapter H** and **L16 + L10 to adapter L**, with GND9 as the common reference. The setup retained an external 120 Ω termination at each leg/end and adapter termination OFF. This was an unloaded research arrangement for one adapter, not a vehicle-network architecture.
+
+It exposed a shared identifier: a vehicle-summary 38D frame differs from the private 38D handshake. Recognizing its observed burst lets my software log and continue, but cannot prevent simultaneous conflicting transmissions or tell which original port accepted a message. Isolated channels retain those distinctions. The [testing summary](experiments/2026-11-05-remote-travel-and-message-discovery.md) records the resulting guard stops and interpretation.
+
+I observed the same remote ceiling with the master attached and removed. That argues against the attached master being the sole explanation; it does not establish the internal cause or available clutch force.
 
 ## How I defined travel
 
@@ -56,3 +64,4 @@ target_raw = 320 + round(2641 × target_percent / 100)
 | Manually observed upper end | 2961 |
 
 The helper's upper cutoff is a software guard, not a mechanical stop. Manual input and motor-driven output don't necessarily have identical usable travel. My rough 14–17 mm output measurement at 40% isn't enough to convert all raw values into millimetres, hydraulic volume, or clutch release.
+
