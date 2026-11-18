@@ -83,7 +83,7 @@ Instead, I'm planning to slide a row of alternating N/S magnets under a stationa
 
 I'd compare repeatability, switching intervals, direction-dependent hysteresis, and sensitivity to air gap. The analog sensor is important because the DRV5013 tells me *when* it switched, not the shape or strength of the field that caused it.
 
-The linear rig should let me narrow down the spacing before I build a proper rotating ring. It cannot perfectly reproduce the curved, closed magnetic ring, or prove performance at rotational speed. The eventual complete ring will still need its own checks.
+The [linear test plan](test-plan.md) covers the fixture, instrumentation, and measurements in more detail. The rail should let me narrow down the spacing before I build a proper rotating ring. It cannot perfectly reproduce the curved, closed magnetic ring, or prove performance at rotational speed. The eventual complete ring will still need its own checks.
 
 ## What still needs to be proven
 
