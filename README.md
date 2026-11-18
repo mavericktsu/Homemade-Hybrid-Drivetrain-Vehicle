@@ -53,6 +53,7 @@ I haven't established combined output, vehicle mass, acceleration, top speed, el
 | [Project baseline](docs/project-baseline.md) | Current choices and questions I still need to answer |
 | [System index](systems/README.md) | Notes organized by subsystem |
 | [iBooster overview](systems/ibooster-gen1/README.md) | The bench results and a route through the detailed notes |
+| [AXM2 motor-position sensing](systems/motor-position-encoder/README.md) | Why I'm developing a custom three-Hall encoder instead of using a conventional resolver |
 | [iBooster bench workflow](systems/ibooster-gen1/bench-workflow.md) | Hardware, startup, logging, and how I judge whether control actually works |
 | [Experiment notebook](systems/ibooster-gen1/experiments/README.md) | Problem → troubleshooting → findings, in order |
 | [Documentation guide](docs/documentation-guide.md) | How I keep this notebook readable and traceable |
