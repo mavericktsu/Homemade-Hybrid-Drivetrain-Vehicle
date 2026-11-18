@@ -1,6 +1,6 @@
-# Magnetic encoder: planned bench characterization
+# Testing magnet spacing without building a pile of rings
 
-This is the plan for comparing magnet geometry before committing to a full rotating ring. I have **not** yet collected test data for this fixture.
+I don't want to print five complete rings, mount them one at a time, and then discover I picked the wrong magnet spacing. A linear test fixture should let me compare the magnetic geometry first. This is still the plan; I have **not** collected fixture data yet.
 
 ## What I'm trying to establish
 
@@ -22,7 +22,7 @@ A 20-pole ring has an 18° mechanical magnet-center separation. The straight-str
 
 The linear fixture has no ring curvature or wraparound, so I'll avoid drawing conclusions from the end magnets. I expect to use at least nine magnets per strip and analyze the middle transitions.
 
-## Proposed instrumentation
+## What I'll use to measure it
 
 - **Stationary DRV5013AG** digital bipolar latch, using an appropriate pull-up.
 - **Linear Hall sensor** alongside it (DRV5055 candidate), with sensing-axis alignment, range, and offset checked against its datasheet.
@@ -32,7 +32,7 @@ The linear fixture has no ring curvature or wraparound, so I'll avoid drawing co
 
 An external ADC is a possible improvement, not a prerequisite to start. I want synchronized position/event records rather than assuming a hand-driven carriage moves at a constant speed. The Nano's firmware will need to avoid interrupt and serial-buffer issues.
 
-## Measurements and comparisons
+## How I plan to test it
 
 1. Set magnet pitch and sensor air gap; document both.
 2. Reference the carriage position and record repeated forward and reverse passes.
@@ -43,7 +43,7 @@ An external ADC is a possible improvement, not a prerequisite to start. I want s
 
 Sensor-to-sensor physical offsets will need calibration before comparing analog zero crossings with digital latch events. Raw voltage is not calibrated magnetic flux density unless the sensor transfer function and supply/reference are accounted for.
 
-## What this experiment cannot prove
+## What a straight rail won't tell me
 
 The fixture does not reproduce the exact magnetic field of a closed circular ring. It also doesn't validate inverter decoding, startup commutation, dynamic timing, thermal drift in operation, balance, structural retention, or 7,500 RPM performance.
 

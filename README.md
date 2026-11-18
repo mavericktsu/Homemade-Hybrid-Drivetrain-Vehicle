@@ -1,12 +1,21 @@
 # Homemade Hybrid Drivetrain & Vehicle
 
-I'm building a custom P2 hybrid drivetrain for a **Factory Five Gen 3 Type 65 Coupe**: a Chevrolet small-block V8, an electric motor between the engine and gearbox, and a conventional dog-engagement manual transmission.
+I'm building a P2 hybrid drivetrain for a **Factory Five Gen 3 Type 65 Coupe**. The basic idea is to put an electric motor between a small-block Chevy and a four-speed dog box, keep a real clutch, and make the two power sources work together.
 
-This is my engineering notebook as the project develops. I want it to be useful if you're trying something similar, including the parts that didn't work. Each system has a current explanation, followed by dated experiments that describe the problem, what I tried, and what I learned.
+Why? Partly because the combination sounds ridiculous in a good way. More practically, I want a car that can drive on electric power at low speeds, use the V8 when I want it, and use the motor for assistance, regenerative braking, and gearbox speed matching. The difficult part is making all of that fit in a fairly short car without turning the drivetrain into an unserviceable science project.
 
-**Current focus: [using a Gen 1 Bosch iBooster as a possible clutch actuator](systems/ibooster-gen1/README.md).** I can command movement on the bench, have characterized an apparent remote-travel ceiling, and have a practical power-cycle recovery method. The clutch installation and operation under clutch load are still ahead of me.
+This repository is my running engineering notebook. It covers the decisions, the dead ends, and the bench work—not just a parts list or a collection of finished results. **The car isn't finished, and a lot of the systems here have not been commissioned.**
 
-The [November 2–5 testing summary](systems/ibooster-gen1/experiments/2026-11-05-remote-travel-and-message-discovery.md) covers alternate request encodings, ECU diagnostics, combined-bus observations and **82 completed discovery probes across 41 IDs**. I have not found a travel-limit override; the measured envelope remains the basis for packaging.
+## Start here
+
+| If you're looking for... | Go here |
+| --- | --- |
+| A quick explanation of the drivetrain and the main design constraints | [The build and its layout](#what-im-building) |
+| All the subsystems, including what's written up and what's still coming | [System map](systems/README.md) |
+| Current component choices and unresolved decisions | [Project baseline](docs/project-baseline.md) |
+| The motor-position sensor rabbit hole (resolver vs. custom Hall encoder) | [AXM2 position sensing](systems/motor-position-encoder/README.md) |
+| CAN control, travel limits, and testing of the Tesla iBooster | [iBooster investigation](systems/ibooster-gen1/README.md) |
+| How I separate measurements, interpretations, and plans | [Reading the test notes](docs/documentation-guide.md) |
 
 ## What I'm building
 
@@ -21,45 +30,47 @@ flowchart LR
     I <--> M
 ```
 
-That's the intended arrangement. I'm still developing the shaft support, couplings, clutch hydraulics, mounting, and control integration.
+The P2 arrangement lets the electric motor drive the transmission with the engine disconnected. Once the clutch is engaged, the two can work together. It also gives me a way to use motor torque for dog-box unloading and speed matching without making routine ignition cuts the default shifting strategy.
 
-| System | My current direction | Where it stands |
-| --- | --- | --- |
-| Vehicle | Factory Five Gen 3 Type 65 Coupe | Intended platform |
-| Engine | Naturally aspirated Chevrolet Gen I SBC 350, front-feed Holley Hi-Ram | Build specification developing |
-| Electric motor | Beyond Motors AXM2, medium winding | Selected direction; installed capability unverified |
-| Inverter | DTI HV-500LC | Selected; exact configuration and commissioning open |
-| Transmission | Conventional G-Force G101A dog box, NASCAR gear set, 2.60 / 1.90 / 1.38 / 1.00 | Ratios from my project configuration |
-| Battery | At least seven LG Chem Pacifica modules | Final count, module revision, and packaging open |
-| ECU / hybrid supervisor | Ecumaster EMU Pro 16 | Selected architecture; control logic developing |
-| Clutch actuator | Gen 1 Bosch iBooster, Tesla P1045523-00C | Bench investigation |
-| Primary display | Ecumaster ADU5 | Selected direction |
-| Supporting electronics | Dilithium BMS direction, power distribution still being specified, auxiliary Raspberry Pi display plus separate Android navigation/media | Mixed selected and provisional items |
+The obvious downside: **there's a motor, clutch, adapters, supports, and a gearbox to fit into a space that wasn't designed for them.** Packaging has driven a surprising number of the decisions in this build.
 
-These are my design choices, not a claim that everything is installed or validated. My [project baseline](docs/project-baseline.md) records the unresolved decisions, including the difference between the current seven-or-more-module battery intent and the older six-module packaging study.
+### Main hardware
 
-## What I want it to do
-
-I'm targeting about **425 crank hp** from the engine and using **7,000 rpm as a design ceiling**. Those are planning numbers, not dyno results or an approved limit for a finished engine.
-
-I want electric launch and low-speed engine-off operation, followed by a transition into hybrid driving. The AXM2 would provide propulsion assistance and negative torque where the eventual battery, inverter, and thermal limits allow it. For shifting, I want to use motor torque to unload the gearbox dogs and match shaft speeds, with minimal interference in SBC operation. Routine ignition cuts or commanded engine-throttle reductions aren't my baseline strategy.
-
-I haven't established combined output, vehicle mass, acceleration, top speed, electric range, or sustained hybrid output. My private virtual-dyno tool is useful for exploring assumptions, but its defaults and calculated outputs aren't vehicle specifications.
-
-## Where to start reading
-
-| Page | What you'll find |
+| Area | Current direction |
 | --- | --- |
-| [Project baseline](docs/project-baseline.md) | Current choices and questions I still need to answer |
-| [System index](systems/README.md) | Notes organized by subsystem |
-| [iBooster overview](systems/ibooster-gen1/README.md) | The bench results and a route through the detailed notes |
-| [AXM2 motor-position sensing](systems/motor-position-encoder/README.md) | Why I'm developing a custom three-Hall encoder instead of using a conventional resolver |
-| [iBooster bench workflow](systems/ibooster-gen1/bench-workflow.md) | Hardware, startup, logging, and how I judge whether control actually works |
-| [Experiment notebook](systems/ibooster-gen1/experiments/README.md) | Problem → troubleshooting → findings, in order |
-| [Documentation guide](docs/documentation-guide.md) | How I keep this notebook readable and traceable |
-| [Experiment template](templates/experiment.md) | The format I use for new work |
+| Chassis | Factory Five Gen 3 Type 65 Coupe |
+| Engine | Naturally aspirated Chevrolet Gen I 350 SBC; approximately 425 crank hp is the initial target, not a measured result |
+| Engine disconnect | Conventional clutch between engine and AXM2 |
+| Electric motor | Beyond Motors AXM2, medium-voltage winding |
+| Inverter | DTI HV-500LC |
+| Transmission | G-Force G101A, 2.60 / 1.90 / 1.38 / 1.00 |
+| Battery | LG Chem Pacifica modules; at least seven currently planned |
+| Engine and hybrid control | Ecumaster EMU Pro 16 |
+| Clutch actuation | Tesla Gen 1 Bosch iBooster under bench investigation |
+| Motor position feedback | Custom 20-pole, three-Hall encoder under development |
+| Primary display | Ecumaster ADU5 |
 
-I distinguish recorded bench results, my observations, interpretations, and plans throughout these pages. This remains a development project, with no validated vehicle controller or completed brake/clutch installation. I've published a small selection of derived bench data; the working software, full raw captures, CAD, and private conversations aren't included here.
+These are project selections and design targets, not a claim that the entire system is assembled or proven. The [baseline](docs/project-baseline.md) is where I track changes in direction.
 
-Updated November 5, 2026.
+## What I want the car to do
 
+I'm primarily building for track use, with electric torque filling in where it makes sense rather than chasing a single impressive combined horsepower number. I also want electric-only low-speed operation, useful regeneration, and control over how aggressively the motor helps in different modes.
+
+My engine target is roughly **425 crank hp**. I'm using **7,000 rpm as a design ceiling** while the engine specification develops. Neither is a dyno result or a validated operating limit. Combined power, sustained assist, thermal performance, and actual vehicle behavior will need testing.
+
+## What's actually documented
+
+Right now, the deepest material is on two problems:
+
+- **[iBooster control](systems/ibooster-gen1/README.md):** I've commanded movement on an unloaded bench assembly, measured a repeatable remote-travel limit, explored CAN fault/recovery behavior, and kept the individual experiments and derived data. Whether it will operate the clutch under load is still open.
+- **[AXM2 rotor position](systems/motor-position-encoder/README.md):** I've compared resolver arrangements against the packaging and inverter constraints, designed an initial Hall PCB, and settled on a custom magnetic encoder as the direction to test. A working rotating encoder has not been demonstrated.
+
+There's a lot more car to cover. The [system map](systems/README.md) includes the major areas I intend to document next; I won't create the appearance of a finished technical write-up by filling them with empty pages.
+
+## A note about the evidence
+
+I try to keep a clean line between **what I measured**, **what I think it means**, and **what I'm planning to try next**. If an experiment failed or a design changed, I want that recorded too. The latest overview describes the current direction; the dated notes preserve how I got there.
+
+The repo contains selected documentation and derived bench data, not all of my working software, CAD, or raw captures.
+
+*Project notes updated November 18, 2026.*
