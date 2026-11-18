@@ -1,37 +1,36 @@
-# How I keep this notebook
+# How to read these notes
 
-I want someone arriving halfway through the project to understand why I tried something, how I checked it, and what the result actually establishes. A list of test numbers or a pasted terminal log doesn't do that on its own.
+I'm using this repository to explain *why* I made the choices I did, not just record the part numbers I ended up with. A finished assembly can make the earlier decisions look obvious. Usually they weren't.
 
-## Two layers of documentation
+The easiest way in is the [project overview](../README.md), followed by the [system map](../systems/README.md). The [baseline](project-baseline.md) reflects the current direction when an older test or drawing says otherwise.
 
-Each system starts with a README explaining the current state. Hardware, interfaces, and practical workflow get their own pages when needed. Dated experiments preserve the route I took, including failed ideas and superseded settings. I update the overview when the answer changes, while keeping the old experiment's result intact and linking the newer finding.
+## Overview first, experiments second
 
-My normal experiment structure is:
+For each subsystem I try to keep two levels of detail:
 
-1. **The problem:** what I wanted to understand, and why it mattered to the vehicle.
-2. **What I tried:** the hardware, starting state, commands, measurements, and comparisons.
-3. **What I found:** the observations and recorded results, including failures.
-4. **What I think it means:** my interpretation, alternatives, and practical consequence.
-5. **What comes next:** the unresolved question or change I intend to make.
+- **Overview:** what I'm trying to do, why it's difficult, what I've chosen, and what still isn't answered.
+- **Working notes:** hardware details, test procedures, measurements, and dated experiments. These are where I put the failed ideas and the irritating little discoveries that tend to matter later.
 
-I write in first person because this is my work and my interpretation. I use direct instructions in a bench guide when that helps someone repeat a step. I keep exact parameters beside descriptive names: “omit the request for 100 ms” is more useful than “test 11 failed.” Historical case numbers can stay as a cross-reference, with the software version identified.
+The [iBooster section](../systems/ibooster-gen1/README.md) is a good example. There's a readable overview, but the [experiment index](../systems/ibooster-gen1/experiments/README.md) still has the full path through the testing.
 
-## Evidence and confidence
+## How certain is a result?
 
-| Label | What I mean |
+| Term | What I mean |
 | --- | --- |
-| Recorded | A saved capture or report contains the value; I name the source |
-| Observed | I saw, heard, or roughly measured it, without a synchronized instrument record |
-| Inferred | My explanation fits the observations but hasn't been isolated experimentally |
-| Planned / checked offline | I've prepared the procedure or checked software behavior without demonstrating it on hardware |
-| Unknown | I haven't established it |
+| **Recorded** | I saved an instrument capture or other data that supports the statement. |
+| **Observed** | I saw, heard, or roughly measured something, but don't necessarily have a synchronized record. |
+| **Inferred** | The explanation fits what I've seen, but I haven't isolated the cause. |
+| **Planned** | A design or test I intend to try. It is not a result. |
+| **Unknown** | I haven't established it. |
 
-These labels keep a plausible explanation from quietly becoming a specification. For example, my PSU clicked while the booster cycled, which makes power delivery a strong suspect; I haven't captured the voltage transient that would prove a reset cause.
+I don't always repeat these labels in every sentence, but I try to make the distinction clear. For example, hearing a bench power supply click during a failure makes it worth investigating the power supply. It doesn't prove what happened electrically.
 
-## What I publish
+A claimed 'test passed' also isn't much use if the hardware didn't actually do the thing I was testing. For actuator work, I care about commanded movement **and** feedback or physical response.
 
-I prefer small, useful data excerpts with units, time origins, calibration, source filenames, and hashes. A reader should be able to distinguish host-queued commands, adapter echoes, and actual feedback. If I haven't published the full capture or controller source, I say so rather than implying complete reproducibility.
+## What's in the repository
 
-I keep private paths, credentials, chat exports, and unrelated working files out of the repository. External research gets a link and a note about which hardware generation it covers. I'll identify source licenses before importing code or substantial third-party material; a reference link doesn't grant me permission to republish it. I haven't selected a repository-wide license yet.
+I publish the explanations and selected data that are useful to understand or reproduce a result. When available, that includes units, timestamps, capture identifiers, configuration, and enough context to tell a real response from a command or an adapter echo.
 
-Use the [experiment template](../templates/experiment.md) for the next session. This format is a guide to explaining the work, not a requirement to turn every small observation into a long report.
+This isn't a dump of every CAD revision, raw log, or script on my computer. If the data or source for a result isn't published, I'll say so. I also keep private paths, credentials, and unrelated material out of the repo.
+
+For new bench work, there's an [experiment template](../templates/experiment.md). It's there to keep the important details from getting lost, not to make every five-minute test read like a journal paper.
